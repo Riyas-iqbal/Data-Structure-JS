@@ -1,5 +1,4 @@
 let arr = [2, 3, 4, 0, 8, 6]
-aiuhdai = [ 2, 3, 4, 0, 0, 8 ]
 
 var duplicateZeros = function (arr) {
     const newArr = [];

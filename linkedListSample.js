@@ -72,9 +72,8 @@ function printMiddleEfficient() {
 
 
 
-for (let i = 1; i >= 1; --i) {
+for (let i = 1; i < 5; i++) {
+    console.log(i)
     pushNode(i);
 }
-// console.log(head)
-
-console.log(printMiddleEfficient())
+console.log(head)
