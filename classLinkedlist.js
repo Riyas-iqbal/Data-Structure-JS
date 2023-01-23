@@ -1,4 +1,3 @@
-
 class Node {
     constructor(data){
         this.data = data
@@ -33,7 +32,7 @@ LinkedList.prototype.addNodeStart = function (data) {
     this.head = new_node
 }
 
-LinkedList.prototype.printNode = function () {
+LinkedList.prototype.printList = function () {
     temp = this.head
     if (!temp) return null
     while (temp !== null) {
@@ -94,10 +93,12 @@ LinkedList.prototype.arrayToList = function (array){
     }
 }
 
-let list1 = new LinkedList()
+//     Methods -
+//  1. addNode - add a node at the end of the list
+//  2. addNodeStart - add a node at the beginning of the list
+//  3. printList - print the list in the order it was added
+//  4. deleteNode - delete a node from the end
+//  5. deleteNodeAt - delete node at the index specified
+//  6. arrayToList - accepts an array as arguments and convert it to a LinkedList  
 
-
-list1.arrayToList([1,2,3,4,5,6])
-list1.addNodeStart(0)
-
-list1.printNode()
+let list = new LinkedList()     //create a linked list named 'list'
