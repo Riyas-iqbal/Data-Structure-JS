@@ -27,8 +27,10 @@ LinkedList.prototype.addNode = function (data){
 }
 
 LinkedList.prototype.addNodeStart = function (data) {
-    if (!head) return null
-    
+    if (!this.head) return null
+    let new_node = new Node(data)
+    new_node.next = this.head
+    this.head = new_node
 }
 
 LinkedList.prototype.printNode = function () {
@@ -95,6 +97,7 @@ LinkedList.prototype.arrayToList = function (array){
 let list1 = new LinkedList()
 
 
-list1.arrayToList([1,2,3,4,5])
+list1.arrayToList([1,2,3,4,5,6])
+list1.addNodeStart(0)
 
 list1.printNode()
