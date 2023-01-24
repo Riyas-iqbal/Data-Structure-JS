@@ -9,21 +9,22 @@ class LinkedList {
     constructor(){
         this.head = null
     }
+
+    addNode = function (data){
+        let new_node = new Node(data)
+        if (!this.head) {
+            this.head = new_node
+        } else {
+            let temp = this.head
+            while (temp.next !== null) {
+                temp = temp.next
+            }
+            temp.next = new_node
+        }
+        return this.head
+    }
 }
 
-LinkedList.prototype.addNode = function (data){
-    let new_node = new Node(data)
-    if (!this.head) {
-        this.head = new_node
-    } else {
-        temp = this.head
-        while (temp.next !== null) {
-            temp = temp.next
-        }
-        temp.next = new_node
-    }
-    return this.head
-}
 
 LinkedList.prototype.addNodeStart = function (data) {
     if (!this.head) return null
@@ -35,10 +36,12 @@ LinkedList.prototype.addNodeStart = function (data) {
 LinkedList.prototype.printList = function () {
     temp = this.head
     if (!temp) return null
+    console.log()
     while (temp !== null) {
-        console.log(temp.data)
+        process.stdout.write(temp.data+' ')
         temp=temp.next
     }
+    console.log()
 }
 
 LinkedList.prototype.getLength = function () {
@@ -93,6 +96,20 @@ LinkedList.prototype.arrayToList = function (array){
     }
 }
 
+LinkedList.prototype.reverseList = function () {
+    let currentNode = this.head
+    let prevNode = null    
+    let nextNode = null
+    while (currentNode) {
+        nextNode = currentNode.next
+        currentNode.next = prevNode
+        prevNode = currentNode
+        currentNode = nextNode
+        nextNode = null
+    }
+    this.head = prevNode
+}
+
 //     Methods -
 //  1. addNode - add a node at the end of the list
 //  2. addNodeStart - add a node at the beginning of the list
@@ -100,5 +117,13 @@ LinkedList.prototype.arrayToList = function (array){
 //  4. deleteNode - delete a node from the end
 //  5. deleteNodeAt - delete node at the index specified
 //  6. arrayToList - accepts an array as arguments and convert it to a LinkedList  
+//  7. reverseList - reverse the list
 
 let list = new LinkedList()     //create a linked list named 'list'
+
+list.addNode(1)
+list.addNode(2)
+list.addNode(3)
+list.addNode(4)
+
+
