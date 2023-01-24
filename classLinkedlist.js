@@ -127,3 +127,20 @@ list.addNode(3)
 list.addNode(4)
 
 
+
+LinkedList.reverseLinkedList = function (params) {
+    let currentNode = this.head
+    let nextNode = null
+    let previousNode = null
+
+    while (currentNode) {
+        nextNode = currentNode.next
+        currentNode.next = previousNode
+        previousNode = currentNode
+        currentNode = nextNode
+        nextNode = null
+    }
+    
+}
+
+

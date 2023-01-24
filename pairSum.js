@@ -1,11 +1,11 @@
 
 
 
-function hi(arr, a) {
+function sumOfPair(arr, target) {
     let count = 0;
     for (i = 0; i < arr.length - 1; i++) {
         for (j = i + 1; j < arr.length; j++) {
-            if (arr[i] + arr[j] == a) {
+            if (arr[i] + arr[j] == target) {
                 count++;
             }
         }
@@ -13,6 +13,6 @@ function hi(arr, a) {
     console.log(count);
 }
 
-hi([2, 4, 6, 8, 0], 8)
+sumOfPair([2, 4, 6, 8, 0], 8)
 
 
