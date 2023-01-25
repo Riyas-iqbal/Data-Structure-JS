@@ -4,6 +4,7 @@ class DoublyLinkedList {
         this.tail=null
     }
 
+    //add a node at the end
     append(data){
         let node = new Node(data)
         if (!this.head) {
@@ -19,9 +20,17 @@ class DoublyLinkedList {
         this.tail = node
     }
 
-    // prepend(data)
-
-
+    //add a node at the beginning
+    prepend(data){
+        let node = new Node(data)
+        if (!this.head) {
+            this.head = node
+            return this.head
+        }
+        this.head.prev = node
+        node.next = this.head
+        this.head = node
+    }
 }
 
 
@@ -38,9 +47,8 @@ const list = new DoublyLinkedList()
 
 list.append(3)
 list.append(4)
-list.append(5)
+list.prepend(2)
 
-
-console.log(list.tail.prev.prev);
+console.log(list.head);
 
 
