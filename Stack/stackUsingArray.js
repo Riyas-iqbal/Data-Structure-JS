@@ -32,16 +32,23 @@ class Stack {
     }
 
     print(){
+        this.items.forEach(element => {
+            console.log(element)  
+        })
         return this.items.toString()
+    }
+
+    reverseString(string){
+        for (let i = 0; i < string.length; i++) {
+            this.push(string[string.length-i-1])
+        }
     }
 }
 
 const stack = new Stack()
 
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.push(4)
-stack.push(5)
+stack.reverseString('hello world')
 
-console.log(stack.length())
+
+
+console.log(stack.print())
