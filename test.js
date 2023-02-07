@@ -1,16 +1,19 @@
-// program to find the factorial of a number
-function factorial(x) {
-
-    // if number is 0
-    if (x == 0) {
-        return 1;
+// Bubble Sort
+function bubbleSort(arr) {
+let n = arr.length;
+for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+            let temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
+        }
     }
-
-    // if number is positive
-    else {
-        return x * factorial(x - 1);
-    }
+}
+return arr;
 }
 
 
-console.log(factorial(0));
+
+
+console.log(bubbleSort([4,2,3,1]))
