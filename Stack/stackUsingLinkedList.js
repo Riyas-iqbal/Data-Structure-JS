@@ -34,10 +34,23 @@ class Stack{
     pop(){
         this.top = this.top?.next || null
     }
+
+
+    //fucntion to delete a element from the string if a # exist
+    // input = ab#c => ac
+    // input = hlc#vc => hlvc
+    popAtHash(string){
+        for (let i = 0; i < string.length; i++) {
+            if (string[i] === '#') {
+                this.pop()
+            }else{
+                this.push(string[i])
+            }
+        }
+    }
 }
 
 const stack = new Stack()
 
-stack.pop()
 
 stack.printStack()
