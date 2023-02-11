@@ -12,17 +12,5 @@ function InsertionSort(array) {
 
 const arr = [8, 20, -2, 4, -6]
 
-function InsertionSort2(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        let minimum = i
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[j] < arr[minimum]) {
-                minimum = j
-            }
-        }
-        if (i !== minimum) [[arr[i], arr[minimum]]] = [[arr[minimum], arr[i]]]
-    }
-    return arr
-}
 
-console.log(InsertionSort2(arr))
+
