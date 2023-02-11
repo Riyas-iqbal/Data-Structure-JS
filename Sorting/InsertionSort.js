@@ -3,24 +3,24 @@ function InsertionSort(array) {
         let numberToInsert = array[i]
         let j = i - 1
         while (j >= 0 && array[j] > numberToInsert) {
-            array[j+1]=array[j]
+            array[j + 1] = array[j]
             j = j - 1
         }
-        array[j+1] = numberToInsert
+        array[j + 1] = numberToInsert
     }
 }
 
-const arr = [8,20,-2,4,-6]
+const arr = [8, 20, -2, 4, -6]
 
-function InsertionSort2(arr){
+function InsertionSort2(arr) {
     for (let i = 0; i < arr.length; i++) {
         let minimum = i
-        for (let j = i+1; j < arr.length; j++) {
+        for (let j = i + 1; j < arr.length; j++) {
             if (arr[j] < arr[minimum]) {
                 minimum = j
             }
         }
-        [[arr[i], arr[minimum]]] = [[arr[minimum], arr[i]]]
+        if (i !== minimum) [[arr[i], arr[minimum]]] = [[arr[minimum], arr[i]]]
     }
     return arr
 }
