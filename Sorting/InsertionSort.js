@@ -20,9 +20,7 @@ function InsertionSort2(arr){
                 minimum = j
             }
         }
-        let temp = arr[i]
-        arr[i] = arr[minimum]
-        arr[minimum] = temp
+        [[arr[i], arr[minimum]]] = [[arr[minimum], arr[i]]]
     }
     return arr
 }
