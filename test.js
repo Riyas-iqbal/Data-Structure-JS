@@ -12,8 +12,6 @@ function bubbleSort(arr) {
     return arr
 }
 
-let nearlySorted = [1, 2, 3, 5 , 4]
-let random = [4, 2, 5, 1, 3]
 
 function SelectionSort(arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -28,4 +26,18 @@ function SelectionSort(arr) {
     return arr
 }
 
-console.log(SelectionSort(nearlySorted))
+
+let random = [4, 2, 5, 1, 3]
+let nearlySorted = [1, 2, 3, 5 , 4]
+
+
+function InsertionSort(arr){
+    for(let i = 1 ; i < arr.length ; i++){
+        let currentElement = arr[i]
+        for(var j = i-1; j >= 0 && arr[j] > currentElement ; j--){
+            arr[j+1]=arr[j]
+        }
+        arr[j+1]=currentElement
+    }
+    return arr
+}
