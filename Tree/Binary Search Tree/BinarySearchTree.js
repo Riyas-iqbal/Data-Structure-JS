@@ -22,10 +22,11 @@ class BinarySearchTree {
             this.root = node
             return this.root
         }
-
+        //private method call
         this.#insertNode(this.root,node)
     }
 
+    //private methods introduced in ECMAscript 10 (2019)
     #insertNode(root,node){
         if (root.value > node.value) {
             if (!root.left) {
