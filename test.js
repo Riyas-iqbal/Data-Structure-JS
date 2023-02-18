@@ -1,26 +1,29 @@
-let arr = [-1, 4, 5, 8, 10]
-
-function BinarySearch(arr, target) {
-    let leftIndex = 0
-    let rightIndex = arr.length - 1
-
-    while (leftIndex <= rightIndex) {
-        let middleIndex = Math.floor((leftIndex + rightIndex) / 2)
-
-        if (arr[middleIndex] === target) {
-            console.log('data found')
-            return middleIndex
-        }
-
-        if (arr[middleIndex] < target) {
-            leftIndex = middleIndex + 1
+function merge(arr1, arr2) {
+    let newArr = new Array(arr1.length + arr2.length)
+    let idx_arr1 = 0 , idx_arr2 = 0
+    for (i = 0; i < newArr.length; i++) {
+        if (arr1[idx_arr1] < arr2[idx_arr2] || !arr2[idx_arr2]) {
+            newArr[i] = arr1[idx_arr1]
+            idx_arr1++
         } else {
-            rightIndex = middleIndex - 1
+            newArr[i] = arr2[idx_arr2]
+            idx_arr2++
         }
     }
+    return newArr
+}
 
-    return -1
+function mergeSort(arr) {
+    if(arr.length < 2){
+        return arr
+    }
+
+    let mid = Math.floor(arr.length/2)
+    let left = mergeSort(arr.slice(0,mid)) 
+    let right = mergeSort(arr.slice(mid)) 
+
+    return merge(left,right)
 }
 
 
-console.log(BinarySearch(arr, 10))
+console.log(mergeSort([1, 4,2 ,3, 6, 7]));
