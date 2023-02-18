@@ -1,29 +1,31 @@
-function merge(arr1, arr2) {
-    let newArr = new Array(arr1.length + arr2.length)
-    let idx_arr1 = 0 , idx_arr2 = 0
-    for (i = 0; i < newArr.length; i++) {
-        if (arr1[idx_arr1] < arr2[idx_arr2] || !arr2[idx_arr2]) {
-            newArr[i] = arr1[idx_arr1]
-            idx_arr1++
-        } else {
-            newArr[i] = arr2[idx_arr2]
-            idx_arr2++
+function pivotElement(arr, start = 0, end = arr.length) {
+    let pivotIndex = start
+    let pivot = arr[pivotIndex]
+
+    for (let i = start + 1; i <= end; i++) {
+        if (arr[i] < pivot) {
+            pivotIndex++
+            [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]]
         }
     }
-    return newArr
+
+    [arr[start], arr[pivotIndex]] = [arr[pivotIndex], arr[start]]
+
+    return pivotIndex
 }
 
-function mergeSort(arr) {
-    if(arr.length < 2){
-        return arr
+function quickSort(arr, left = 0, right = arr.length) {
+    if (left < right) {
+        let pivot = pivotElement(arr,left,right)
+        //left
+        quickSort(arr, left, pivot - 1)
+        //right
+        quickSort(arr, pivot + 1, right)
     }
-
-    let mid = Math.floor(arr.length/2)
-    let left = mergeSort(arr.slice(0,mid)) 
-    let right = mergeSort(arr.slice(mid)) 
-
-    return merge(left,right)
+    return arr
 }
 
+console.log(quickSort([3,4,1,6,2,7,8]))
 
-console.log(mergeSort([1, 4,2 ,3, 6, 7]));
+
+
