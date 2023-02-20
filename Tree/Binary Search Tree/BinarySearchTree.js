@@ -6,6 +6,44 @@ class Node {
     }
 }
 
+class QueueNode{
+    constructor(data){
+        this.data=data
+        this.next=null
+    }
+}
+
+class Queue{
+    constructor(){
+        this.rear = null
+        this.front = null
+        this.size = 0
+    }
+
+    enQueue(data){
+        const node = new QueueNode(data)
+        this.size++
+        if (!this.front) {
+            this.rear = node
+            this.front = node
+            return this.rear
+        } 
+        this.rear.next = node
+        this.rear = node
+        return this.rear
+    }
+
+    deQueue(){
+        if (!this.front) {
+            return null
+        }
+        this.size--
+        let temp = this.front
+        this.front = this.front.next
+        return temp
+    }
+}
+
 class BinarySearchTree {
 
     constructor() {
@@ -82,17 +120,37 @@ class BinarySearchTree {
         }
     }
 
+    BreadthFirstSearch(){
+        const queue = new Queue()
+        if (!this.root) {
+            return null   
+        }
+        queue.enQueue(this.root)
+        while(queue.size != 0){
+            const current = queue.deQueue()
+            console.log(current.data.value)
+            if (current.data.left) {
+                queue.enQueue(current.data.left)
+            }
+
+            if (current.data.right) {
+                queue.enQueue(current.data.right)
+            }
+        }
+        
+    }
+
 }
 
 const bst = new BinarySearchTree()
 
-bst.insert(20)
 bst.insert(10)
-bst.insert(30)
-bst.insert(40)
-bst.insert(7)
-bst.insert(2)
 bst.insert(5)
-bst.postOrder()
+bst.insert(3)
+bst.insert(7)
+bst.insert(15)
 
-console.log(bst.root)
+
+bst.BreadthFirstSearch()
+
+// console.log(bst.root)
