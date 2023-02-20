@@ -7,6 +7,7 @@ class Node {
 }
 
 class BinarySearchTree {
+
     constructor() {
         this.root = null
     }
@@ -64,15 +65,30 @@ class BinarySearchTree {
             if(root.right) this.preOrder(root.right)
         }
     }
+
+    inOrder(root=this.root){
+        if (root) {
+            this.inOrder(root.left)
+            console.log(root.value)
+            this.inOrder(root.right)
+        }
+    }
+
+
+
 }
 
 const bst = new BinarySearchTree()
 
-bst.insert(20)
-bst.insert(10)
-bst.insert(30)
-bst.insert(5)
-bst.preOrder()
+// bst.insert(20)
+// bst.insert(10)
+// bst.insert(30)
+// bst.insert(40)
+// bst.insert(7)
+// bst.insert(2)
+// bst.insert(5)
+// bst.inOrder()
+bst.hey()
 
 // console.log(bst.search(10))
 console.log(bst.root)
