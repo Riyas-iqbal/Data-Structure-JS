@@ -137,8 +137,9 @@ class BinarySearchTree {
                 queue.enQueue(current.data.right)
             }
         }
-        
     }
+
+    levelOrder = this.BreadthFirstSearch
 
 }
 
@@ -151,6 +152,7 @@ bst.insert(7)
 bst.insert(15)
 
 
-bst.BreadthFirstSearch()
+// bst.BreadthFirstSearch()
+bst.levelOrder()
 
 // console.log(bst.root)
