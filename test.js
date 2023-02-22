@@ -11,11 +11,13 @@ class BinarySearchTree {
     }
 
     isEmpty() {
-        return this.root !== null
+        return this.root === null
     }
+
+    
 }
 
 
 const bst = new BinarySearchTree()
 
-console.log()
+console.log(bst.isEmpty())
