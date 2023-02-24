@@ -141,6 +141,10 @@ class BinarySearchTree {
 
     levelOrder = this.BreadthFirstSearch
 
+    min(){
+        
+    }
+
 }
 
 const bst = new BinarySearchTree()
