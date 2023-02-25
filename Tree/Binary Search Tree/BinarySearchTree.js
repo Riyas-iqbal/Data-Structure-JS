@@ -88,7 +88,7 @@ class BinarySearchTree {
         }
 
         if (root.value === value) {
-            return true
+            return root
         } else if (root.value > value) {
             return this.search(value,root.left)
         } else {
@@ -141,9 +141,61 @@ class BinarySearchTree {
 
     levelOrder = this.BreadthFirstSearch
 
-    min(){
-        
+    min(root=this.root){
+        if(this.isEmpty()){
+            return null
+        }
+
+        if (root.left) {
+            return this.min(root.left)
+        } 
+
+        return root.value
     }
+
+    max(root=this.root){
+        if (this.isEmpty()) {
+            return null
+        }
+
+        if(root.right){
+            return this.max(root.right)
+        }
+
+        return root.value
+    }
+
+    delete(value){
+        if (this.isEmpty()) {
+            console.log('Tree is empty')
+            return null
+        }
+
+        this.root = this.deleteNode(this.root,value)
+    }
+
+    deleteNode(root,value){
+        if (root === null) return root
+        if (value < root.value) {
+            root.left = this.deleteNode(root.left,value)
+        } else if (value > root.value ){
+            root.right = this.deleteNode(root.right,value)
+        } else {
+            if (!root.left && !root.right) {
+                return null
+            }
+                  if (!root.left) {
+                      return root.right
+                  } else if ( !root.right){
+                      return root.left
+                  } 
+            root.value = this.min(root.right)
+            root.right = this.deleteNode(root.right,value)
+        }
+        return root
+    }
+
+    
 
 }
 
@@ -155,8 +207,13 @@ bst.insert(3)
 bst.insert(7)
 bst.insert(15)
 
+// bst.delete(3)
+// console.log(bst.isValidBST())
+console.log(bst.root)
 
 // bst.BreadthFirstSearch()
-bst.levelOrder()
+// bst.levelOrder()
+
+// console.log(bst.max())
 
 // console.log(bst.root)
