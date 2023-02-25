@@ -195,7 +195,23 @@ class BinarySearchTree {
         return root
     }
 
-    
+    isValidBST(root=this.root) {
+        (function isValidNode(node){
+          if (!node) {
+            return true;
+          }
+          if (node.left && node.left.val >= node.value) {
+            return false;
+          }
+          if (node.right && node.right.val <= node.value) {
+            return false;
+          }
+          return (
+            isValidNode(node.left) &&
+            isValidNode(node.right)
+          );
+        }(root))
+      }
 
 }
 
@@ -208,7 +224,7 @@ bst.insert(7)
 bst.insert(15)
 
 // bst.delete(3)
-// console.log(bst.isValidBST())
+console.log(bst.isValidBST())
 console.log(bst.root)
 
 // bst.BreadthFirstSearch()
