@@ -51,10 +51,29 @@ class BinarySearchTree {
             this.isPresent(data, root.left)
         } else if (root.data < data && root.right) {
             this.isPresent(data, root.right)
-        } 
+        }
         return -1
     }
 
+    search(data, root = this.root) {
+        if (!root) {
+            return -1
+        }
+        if (root.data == data) {
+            return root
+        } else if (root.data > data) {
+            this.search(data, root.left)
+        } else if (root.data < data) {
+            this.search(data, root.right)
+        }
+        return -1
+    }
+
+    delete(value){
+        this.root = this.deleteNode(value,this.root)
+    }
+
+    
 }
 
 const bst = new BinarySearchTree()
@@ -63,5 +82,7 @@ bst.insert(5)
 bst.insert(10)
 bst.insert(7)
 bst.insert(4)
-console.log(bst.root)
-console.log(bst.isPresent(6))
+// console.log(bst.root)
+// console.log(bst.isPresent(6))
+
+console.log(bst.search(5))
