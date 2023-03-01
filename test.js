@@ -1,88 +1,56 @@
-class Node {
-    constructor(data) {
-        this.data = data
-        this.left = null
-        this.right = null
-    }
-}
-
 class BinarySearchTree {
     constructor() {
         this.root = null
+    }
+
+    TreeNode = class TreeNode {
+        constructor(data) {
+            this.data = data
+            this.left = null
+            this.right = null
+        }
     }
 
     isEmpty() {
         return this.root === null
     }
 
-    insert(value) {
-        const node = new Node(value)
+    insert(data) {
+        const node = new this.TreeNode(data)
         if (this.isEmpty()) {
             return this.root = node
         }
-
-        this.insertNode(this.root, node)
+        this.#insertNode(node)
     }
 
-    insertNode(root, node) {
-        if (root.data > node.data) {
+    #insertNode(node, root=this.root) {
+        if (node.data < root.data) {
             if (!root.left) {
-                root.left = node
+                return root.left = node
             } else {
-                this.insertNode(root.left, node)
+                return this.#insertNode(node, root.left)
             }
         } else {
             if (!root.right) {
-                root.right = node
+                return root.right = node
             } else {
-                this.insertNode(root.right, node)
+                return this.#insertNode(node, root.right)
             }
         }
     }
 
-    isPresent(data, root = this.root) {
-        if (this.isEmpty()) {
-            return false
-        }
-
-        if (root.data == data) {
-            return true
-        } else if (root.data > data && root.left) {
-            this.isPresent(data, root.left)
-        } else if (root.data < data && root.right) {
-            this.isPresent(data, root.right)
-        }
-        return -1
-    }
-
-    search(data, root = this.root) {
-        if (!root) {
-            return -1
-        }
-        if (root.data == data) {
-            return root
-        } else if (root.data > data) {
-            this.search(data, root.left)
-        } else if (root.data < data) {
-            this.search(data, root.right)
-        }
-        return -1
-    }
-
-    delete(value){
-        this.root = this.deleteNode(value,this.root)
-    }
-
     
+
 }
+
 
 const bst = new BinarySearchTree()
 
 bst.insert(5)
-bst.insert(10)
-bst.insert(7)
 bst.insert(4)
-// console.log(bst.root)
-// console.log(bst.isPresent(6))
+bst.insert(1)
+bst.insert(6)
+bst.insert(10)
+bst.insert(16)
 
-console.log(bst.search(5))
+console.log(bst.root)
