@@ -23,7 +23,7 @@ class BinarySearchTree {
         this.#insertNode(node)
     }
 
-    #insertNode(node, root=this.root) {
+    #insertNode(node, root = this.root) {
         if (node.data < root.data) {
             if (!root.left) {
                 return root.left = node
@@ -39,10 +39,70 @@ class BinarySearchTree {
         }
     }
 
-    
+    search(data, root = this.root) {
+        if (this.isEmpty()) {
+            return 'Tree is empty'
+        }
+        if (root.data === data) {
+            return root
+        } else if (root.data > data && root.left) {
+            return this.search(data, root.left)
+        } else if (root.data < data && root.right) {
+            return this.search(data, root.right)
+        }
+        return -1
+    }
 
+    exist(data, root = this.root) {
+        if (this.isEmpty()) {
+            return 'Tree is empty'
+        }
+
+        if (root.data === data) {
+            return true
+        } else if (root.data > data && root.left) {
+            return this.exist(data, root.left)
+        } else if (root.data < data && root.right) {
+            return this.exist(data, root.right)
+        }
+        return false
+    }
+
+    preOrder(root=this.root){
+        if (this.isEmpty()) {
+            return 'Tree is empty'
+        }
+        if (root) {
+            console.log(root.data)
+            this.preOrder(root.left)
+            this.preOrder(root.right)
+        }
+    }
+
+    inOrder(root=this.root){
+        if (this.isEmpty()) {
+            return 'Tree is empty'
+        }
+
+        if (root) {
+            this.inOrder(root.left)
+            console.log(root.data)
+            this.inOrder(root.right)
+        }
+    }
+
+    postOrder(root=this.root){
+        if (this.isEmpty()) {
+            return "Tree is empty"
+        }
+
+        if (root) {
+            this.postOrder(root.left)
+            this.postOrder(root.right)
+            console.log(root.data)
+        }
+    }
 }
-
 
 const bst = new BinarySearchTree()
 
@@ -53,4 +113,4 @@ bst.insert(6)
 bst.insert(10)
 bst.insert(16)
 
-console.log(bst.root)
+bst.postOrder()
