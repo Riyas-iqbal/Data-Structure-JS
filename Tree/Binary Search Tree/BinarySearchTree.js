@@ -170,7 +170,6 @@ class BinarySearchTree {
             console.log('Tree is empty')
             return null
         }
-
         this.root = this.deleteNode(this.root,value)
     }
 

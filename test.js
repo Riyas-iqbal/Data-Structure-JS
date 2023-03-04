@@ -1,116 +1,179 @@
+class Node {
+    constructor(data) {
+        this.value = data
+        this.right = null
+        this.left = null
+    }
+}
+
+class QueueNode{
+    constructor(data){
+        this.data=data
+        this.next=null
+    }
+}
+
+class Queue{
+    constructor(){
+        this.rear = null
+        this.front = null
+        this.size = 0
+    }
+
+    enQueue(data){
+        const node = new QueueNode(data)
+        this.size++
+        if (!this.front) {
+            this.rear = node
+            this.front = node
+            return this.rear
+        } 
+        this.rear.next = node
+        this.rear = node
+        return this.rear
+    }
+
+    deQueue(){
+        if (!this.front) {
+            return null
+        }
+        this.size--
+        let temp = this.front
+        this.front = this.front.next
+        return temp
+    }
+}
+
 class BinarySearchTree {
+
     constructor() {
         this.root = null
     }
 
-    TreeNode = class TreeNode {
-        constructor(data) {
-            this.data = data
-            this.left = null
-            this.right = null
-        }
-    }
-
-    isEmpty() {
+    isEmpty(){
         return this.root === null
     }
 
-    insert(data) {
-        const node = new this.TreeNode(data)
+    insert(value){
+        const node = new Node(value)
+
         if (this.isEmpty()) {
-            return this.root = node
+            this.root = node
+            return this.root
         }
-        this.#insertNode(node)
+        //private method call
+        this.#insertNode(this.root,node)
     }
 
-    #insertNode(node, root = this.root) {
-        if (node.data < root.data) {
+    //private methods introduced in ECMAscript 10 (2019)
+    #insertNode(root,node){
+        if (root.value > node.value) {
             if (!root.left) {
-                return root.left = node
+                root.left = node
             } else {
-                return this.#insertNode(node, root.left)
+                this.#insertNode(root.left,node)
             }
         } else {
             if (!root.right) {
-                return root.right = node
+                root.right = node
             } else {
-                return this.#insertNode(node, root.right)
+                this.#insertNode(root.right,node)
             }
         }
     }
 
-    search(data, root = this.root) {
-        if (this.isEmpty()) {
-            return 'Tree is empty'
+    search(value,root=this.root){
+        if (!root) {
+            return false
         }
-        if (root.data === data) {
+
+        if (root.value === value) {
             return root
-        } else if (root.data > data && root.left) {
-            return this.search(data, root.left)
-        } else if (root.data < data && root.right) {
-            return this.search(data, root.right)
+        } else if (root.value > value) {
+            return this.search(value,root.left)
+        } else {
+            return this.search(value,root.right)
         }
-        return -1
-    }
-
-    exist(data, root = this.root) {
-        if (this.isEmpty()) {
-            return 'Tree is empty'
-        }
-
-        if (root.data === data) {
-            return true
-        } else if (root.data > data && root.left) {
-            return this.exist(data, root.left)
-        } else if (root.data < data && root.right) {
-            return this.exist(data, root.right)
-        }
-        return false
     }
 
     preOrder(root=this.root){
-        if (this.isEmpty()) {
-            return 'Tree is empty'
-        }
         if (root) {
-            console.log(root.data)
+            console.log(root.value)
             this.preOrder(root.left)
             this.preOrder(root.right)
         }
     }
 
     inOrder(root=this.root){
-        if (this.isEmpty()) {
-            return 'Tree is empty'
-        }
-
         if (root) {
             this.inOrder(root.left)
-            console.log(root.data)
+            console.log(root.value)
             this.inOrder(root.right)
         }
     }
-
+    
     postOrder(root=this.root){
-        if (this.isEmpty()) {
-            return "Tree is empty"
-        }
-
         if (root) {
             this.postOrder(root.left)
             this.postOrder(root.right)
-            console.log(root.data)
+            console.log(root.value)
         }
     }
+
+    min(root=this.root){
+        if (root.left) {
+            return this.min(root.left)
+        }
+        return root.value
+    }
+
+    max(root=this.root){
+        if (root.right) {
+            return this.max(root.right)
+        }
+        return root.value
+    }
+
+    delete(value){
+        if (this.isEmpty()) {
+            return null
+        }
+        this.root = this.deleteNode(value)
+        // console.log(this.root)
+    }
+
+    deleteNode(value,root=this.root){
+        if (root.value > value) {
+            root.left = this.deleteNode(value,root.left)
+        } else if(root.value < value){
+            root.right = this.deleteNode(value,root.right)
+        } else {
+            if (!root.right && !root.left) {
+                return null
+            } else if (!root.right){
+                return root.left
+            } else if (!root.left){
+                return root.right
+            } else {
+                root.value = this.min(root.right)
+                root.right = this.deleteNode(root.value,root.right)
+            }
+        }
+        return root
+    }
+
 }
+
 
 const bst = new BinarySearchTree()
 
 bst.insert(5)
-bst.insert(4)
+// bst.insert(4)
+// bst.insert(8)
+bst.insert(9)
 bst.insert(1)
-bst.insert(6)
-bst.insert(10)
-bst.insert(16)
+bst.insert(3)
 
-bst.postOrder()
+bst.delete(3)
+
+console.log(bst)
