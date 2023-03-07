@@ -38,6 +38,44 @@ class Graph {
             console.log( vertex + ' -> ' + [...this.adjacencyList[vertex]])
         }
     }
+
+    depthFirstSearchRecursive(start){
+        let result = []
+        let visited = {};
+        let list = this.adjacencyList;
+
+        (function checkVertex(vertex) {
+            if (!list[vertex]) return null;
+            visited[vertex] = true
+            result.push(vertex);
+            [...list[vertex]].forEach(Element => {
+                if (!visited[Element]) {
+                    return checkVertex(Element)
+                }
+            });
+        })(start)
+
+        return result
+    }
+
+
+    depthFirstSearchIterative(start){
+        const stack = []
+        const result = []
+        const visited = {}
+        stack.push(start)
+        while(stack.length){
+            let vertex = stack.pop()
+            result.push(vertex)
+            this.adjacencyList[vertex].forEach(element => {
+                if (!visited[element]) {
+                    stack.push(element)
+                    visited[element]=true
+                }
+            });
+        }
+        return result
+    }
 }
 
 const graph = new Graph()
@@ -45,7 +83,7 @@ const graph = new Graph()
 graph.addVertex('A')
 graph.addEdge('A','B')
 graph.addEdge('C','B')
-graph.display()
-graph.removeVertex('A')
-console.log('new')
-graph.display()
+graph.addEdge('Z','L')
+graph.addEdge('C','L')
+// const result = graph.depthFirstSearch('A')
+console.log(result);
