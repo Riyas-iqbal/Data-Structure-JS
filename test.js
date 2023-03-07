@@ -33,27 +33,25 @@ class Stack {
     }
 
     peek(){
-        return this.top
+        return this.top?.data
     }
+
+    matchBracket(array){
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == '(' || array[i] == ')') {
+                if (this.peek() == '(' && array[i] == ')' ) {
+                    this.pop()
+                } else {
+                    this.push(array[i])
+                }
+            }
+        }
+        return this.size
+    }
+    
     
 }
 
-
 const stack = new Stack()
 
-
-function matchBracket(array){
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] == '(' || ')') {
-            if (stack.peek() == '(' && array[i] == ')' ) {
-                stack.pop()
-            } else {
-                stack.push(array[i])
-            }
-        }
-    }
-    return this.size
-}
-
-
-console.log(matchBracket([1,2,3,4,5,6]))
+console.log(stack.matchBracket([1,2,3,4,5,6,'(',')']))
