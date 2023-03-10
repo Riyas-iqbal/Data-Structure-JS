@@ -1,35 +1,27 @@
-class Node{
-    constructor(data){
-        this.data = data
-        this.right = null
-        this.left = null
+
+class TrieNode{
+    constructor(){
+        this.children = {}
+        this.endOfWord = false
     }
 }
 
 
-class binarySearchTree{
+class Trie{
     constructor(){
-        this.root = null
+        this.root = new TrieNode()
     }
 
-    insert(data){
-        const node = new Node(data)
 
-        if (this.root === null) {
-            return null
-        }
-
-        this.insertNode(node,root)
-    }
-
-    insertNode(node,root){
-        if (node.data < root.value) {
-            if (root.left) {
-                this.insertNode(node)
+    insert(word){
+        let curr = this.root
+        for (let i = 0; i < word.length; i++) {
+            let charToInsert = word[i]
+            if (!(charToInsert in curr.children)) {
+                curr.children[charToInsert] = new TrieNode()
             }
+            curr = curr.children[charToInsert]
         }
+        curr.endOfWord = true
     }
-
-
-
 }
