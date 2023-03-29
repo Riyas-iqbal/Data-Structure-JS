@@ -1,27 +1,25 @@
-
-class TrieNode{
-    constructor(){
-        this.children = {}
-        this.endOfWord = false
-    }
-}
-
-
-class Trie{
-    constructor(){
-        this.root = new TrieNode()
-    }
-
-
-    insert(word){
-        let curr = this.root
-        for (let i = 0; i < word.length; i++) {
-            let charToInsert = word[i]
-            if (!(charToInsert in curr.children)) {
-                curr.children[charToInsert] = new TrieNode()
-            }
-            curr = curr.children[charToInsert]
+let string = '123423'
+let newString='';
+//123423
+//1343
+let count = 0
+for(i=0;i<string.length;i++){
+    for(j=0;j<string.length;j++){
+        if(string[i]===string[j] && i!==j){
+            var first = i
+            var second = j
+            break;
         }
-        curr.endOfWord = true
+    }
+    if (first) {
+        break;
     }
 }
+
+for (let i = 0; i < string.length; i++) {
+    if (i!==first && i!== second) {
+        newString += string[i]
+    }
+}
+
+console.log(newString)
