@@ -21,3 +21,15 @@ BubbleSort(array)
 console.log(array)
 
 
+
+function BubbleSort(array) {
+    let numToInsert=array[0]
+    for (let i = 1; i < array.length; i++) {
+        for (let j = 0; j < array.length; j++) {
+            if (numToInsert > array[j] && i!==j) {
+                array[j] = array[j+1];
+            }
+        }
+    }
+}
+

@@ -98,7 +98,7 @@ LinkedList.prototype.arrayToList = function (array){
 
 LinkedList.prototype.reverseList = function () {
     let currentNode = this.head
-    let prevNode = null    
+    let prevNode = null
     let nextNode = null
     while (currentNode) {
         nextNode = currentNode.next
